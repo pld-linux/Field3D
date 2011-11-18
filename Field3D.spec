@@ -1,0 +1,99 @@
+Summary:	Field3D - open source library for storing voxel data
+Summary(pl.UTF-8):	Field3D - mająca otwarte źródła biblioteka do przechowywania danych vokseli
+Name:		Field3D
+Version:	1.2.0
+Release:	1
+License:	BSD
+Group:		Libraries
+#Source0Download: https://sites.google.com/site/field3d/downloads
+Source0:	http://github.com/imageworks/Field3D/tarball/v%{version}#/%{name}-%{version}.tar.gz
+# Source0-md5:	e77d4f6e455860291f8e0e0ce547aa50
+Patch0:		%{name}-install.patch
+URL:		http://opensource.imageworks.com/?p=field3d
+BuildRequires:	cmake >= 2.8
+BuildRequires:	boost-devel >= 1.34.0
+BuildRequires:	doxygen
+BuildRequires:	hdf5-devel >= 1.8
+BuildRequires:	ilmbase-devel >= 1.0.1
+BuildRequires:	libstdc++-devel
+Requires:	hdf5 >= 1.8
+Requires:	ilmbase >= 1.0.1
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%description
+Field3D is an open source library for storing voxel data. It provides
+C++ classes that handle in-memory storage and a file format based on
+HDF5 that allows the C++ objects to be written to and read from disk.
+
+%description -l pl.UTF-8
+Field3D to mająca otwarte źródła biblioteka do przechowywania danych
+vokseli. Udostępnia klasy C++ obsługujące przechowywanie ich w pamięci
+oraz format plików oparty na HDF5 pozwalający na zapis i odczyt
+obiektów C++ z dysku.
+
+%package devel
+Summary:	Header files for Field3D library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Field3D
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+Requires:	boost-devel >= 1.34.0
+Requires:	hdf5-devel >= 1.8
+Requires:	ilmbase-devel >= 1.0.1
+Requires:	libstdc++-devel
+
+%description devel
+Header files for Field3D library.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki Field3D.
+
+%package apidocs
+Summary:	Field3D API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki Field3D
+Group:		Documentation
+
+%description apidocs
+API and internal documentation for Field3D library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki Field3D.
+
+%prep
+%setup -q -n imageworks-Field3D-7b8b5d9
+%patch0 -p1
+
+%build
+# main build system is scons, but there is cmake alternative, which is slightly more usable in rpm building
+install -d build
+cd build
+%cmake ..
+
+%{__make}
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+%{__make} -C build install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} -r $RPM_BUILD_ROOT%{_prefix}/docs
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
+%files
+%defattr(644,root,root,755)
+%doc CHANGES COPYING README
+%attr(755,root,root) %{_bindir}/f3dinfo
+%attr(755,root,root) %{_libdir}/libField3D.so
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/Field3D
+
+%files apidocs
+%defattr(644,root,root,755)
+%doc docs/html/*.{css,html,js,png}
