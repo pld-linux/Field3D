@@ -1,7 +1,11 @@
 --- imageworks-Field3D-7b8b5d9/CMakeLists.txt.orig	2010-11-12 18:35:52.000000000 +0100
 +++ imageworks-Field3D-7b8b5d9/CMakeLists.txt	2011-11-18 17:01:54.869318971 +0100
-@@ -147,40 +147,17 @@
-   DESTINATION lib
+@@ -144,43 +144,20 @@
+ 
+ INSTALL ( TARGETS
+   Field3D
+-  DESTINATION lib
++  DESTINATION lib${LIB_SUFFIX}
  )
  
 +FILE(GLOB Field3d_Includes  "${CMAKE_CURRENT_SOURCE_DIR}/export/*.h")
