@@ -88,10 +88,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGES COPYING README
 %attr(755,root,root) %{_bindir}/f3dinfo
-%attr(755,root,root) %{_libdir}/libField3D.so
+%attr(755,root,root) %{_libdir}/libField3D.so.1.3
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libField3D.so
 %{_includedir}/Field3D
 
 %files apidocs
