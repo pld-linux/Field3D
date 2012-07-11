@@ -8,7 +8,6 @@ Group:		Libraries
 #Source0Download: https://sites.google.com/site/field3d/downloads
 Source0:	http://github.com/imageworks/Field3D/tarball/v%{version}#/%{name}-%{version}.tar.gz
 # Source0-md5:	98f225658977f339a734debe426694b9
-Patch0:		%{name}-install.patch
 URL:		http://opensource.imageworks.com/?p=field3d
 BuildRequires:	cmake >= 2.8
 BuildRequires:	boost-devel >= 1.34.0
