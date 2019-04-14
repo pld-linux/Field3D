@@ -2,7 +2,7 @@ Summary:	Field3D - open source library for storing voxel data
 Summary(pl.UTF-8):	Field3D - mająca otwarte źródła biblioteka do przechowywania danych vokseli
 Name:		Field3D
 Version:	1.3.2
-Release:	16
+Release:	17
 License:	BSD
 Group:		Libraries
 #Source0Download: https://sites.google.com/site/field3d/downloads
