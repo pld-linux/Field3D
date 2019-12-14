@@ -1,14 +1,14 @@
+# TODO: (optional) MPI?
 Summary:	Field3D - open source library for storing voxel data
 Summary(pl.UTF-8):	Field3D - mająca otwarte źródła biblioteka do przechowywania danych vokseli
 Name:		Field3D
-Version:	1.3.2
-Release:	20
+Version:	1.7.2
+Release:	1
 License:	BSD
 Group:		Libraries
-#Source0Download: https://sites.google.com/site/field3d/downloads
-Source0:	http://github.com/imageworks/Field3D/tarball/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	98f225658977f339a734debe426694b9
-Patch0:		%{name}-link.patch
+#Source0Download: https://github.com/imageworks/Field3D/releases
+Source0:	http://github.com/imageworks/Field3D/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	61660c2400213ca9adbb3e17782cccfb
 URL:		http://opensource.imageworks.com/?p=field3d
 BuildRequires:	cmake >= 2.8
 BuildRequires:	boost-devel >= 1.34.0
@@ -62,8 +62,7 @@ API and internal documentation for Field3D library.
 Dokumentacja API biblioteki Field3D.
 
 %prep
-%setup -q -n imageworks-Field3D-94d1bf3
-%patch0 -p1
+%setup -q
 
 %build
 # main build system is scons, but there is cmake alternative, which is slightly more usable in rpm building
@@ -91,7 +90,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGES COPYING README
 %attr(755,root,root) %{_bindir}/f3dinfo
-%attr(755,root,root) %{_libdir}/libField3D.so.1.3
+%attr(755,root,root) %{_libdir}/libField3D.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libField3D.so.1.7
 
 %files devel
 %defattr(644,root,root,755)
