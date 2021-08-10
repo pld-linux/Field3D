@@ -16,6 +16,7 @@ BuildRequires:	doxygen
 BuildRequires:	hdf5-devel >= 1.8
 BuildRequires:	ilmbase-devel >= 1.0.1
 BuildRequires:	libstdc++-devel
+BuildRequires:	rpmbuild(macros) >= 1.605
 Requires:	hdf5 >= 1.8
 Requires:	ilmbase >= 1.0.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
