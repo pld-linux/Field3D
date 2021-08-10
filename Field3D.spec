@@ -66,6 +66,7 @@ Dokumentacja API biblioteki Field3D.
 # main build system is scons, but there is cmake alternative, which is slightly more usable in rpm building
 install -d build
 cd build
+export CXXFLAGS="%{rpmcxxflags} %{rpmcppflags} -std=c++14"
 %cmake ..
 
 %{__make}
