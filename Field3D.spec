@@ -7,7 +7,7 @@ Release:	1
 License:	BSD
 Group:		Libraries
 #Source0Download: https://github.com/imageworks/Field3D/releases
-Source0:	http://github.com/imageworks/Field3D/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/imageworks/Field3D/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	536198b1b4840a5b35400ccf05d4431c
 URL:		http://opensource.imageworks.com/?p=field3d
 BuildRequires:	cmake >= 2.8
