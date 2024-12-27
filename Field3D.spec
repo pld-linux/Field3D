@@ -3,7 +3,7 @@ Summary:	Field3D - open source library for storing voxel data
 Summary(pl.UTF-8):	Field3D - mająca otwarte źródła biblioteka do przechowywania danych vokseli
 Name:		Field3D
 Version:	1.7.3
-Release:	12
+Release:	13
 License:	BSD
 Group:		Libraries
 #Source0Download: https://github.com/imageworks/Field3D/releases
@@ -12,8 +12,8 @@ Source0:	https://github.com/imageworks/Field3D/archive/v%{version}/%{name}-%{ver
 Patch0:		openexr3.patch
 URL:		http://opensource.imageworks.com/?p=field3d
 BuildRequires:	OpenEXR-devel >= 3.0.0
-BuildRequires:	cmake >= 2.8
 BuildRequires:	boost-devel >= 1.34.0
+BuildRequires:	cmake >= 2.8
 BuildRequires:	doxygen
 BuildRequires:	hdf5-devel >= 1.8
 BuildRequires:	libstdc++-devel
@@ -63,13 +63,13 @@ Dokumentacja API biblioteki Field3D.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P 0 -p1
 
 %build
 # main build system is scons, but there is cmake alternative, which is slightly more usable in rpm building
 install -d build
 cd build
-export CXXFLAGS="%{rpmcxxflags} %{rpmcppflags} -std=c++14"
+export CXXFLAGS="%{rpmcxxflags} %{rpmcppflags} -DH5_USE_110_API -DBOOST_TIMER_ENABLE_DEPRECATED -std=c++14"
 %cmake ..
 
 %{__make}
